@@ -31,7 +31,19 @@
             <h3 class ="h3_category">Danh mục</h3>
             <br>
             <?php
-                include_once("view/CongTy/menuCTy.php");
+                include_once("controller/CType.php");
+                $p = new CType();
+                $tableComp = $p->getAllType();
+                
+                if(!$tableComp){
+                    echo "Không có sản phẩm";
+                }elseif($tableComp == null){
+                    echo "Chưa có dữ liệu";
+                }else{
+                    while ($row=$tableComp->fetch_assoc()){
+                        echo "<a href='index.php?type=".$row["type_id"]."'>".$row["name"]."</a><br><br>";
+                    }
+                }
             ?>
             </div>
         </div>

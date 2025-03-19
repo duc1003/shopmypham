@@ -1,7 +1,7 @@
 <?php
-    include("controller/cCongTy.php");
-    $p = new CCongTy();
-    $tbl = $p ->getAllCT();
+    include("controller/cCompany.php");
+    $p = new CCompany();
+    $tbl = $p ->getAllCompany();
 
     if(!$tbl){
         echo "Không thể kết nối";
@@ -11,23 +11,26 @@
         $dem = 0;
         echo "<table class='tb' >";
         echo "<thead>";
-        echo "<th>Mã danh mục</th>";
-        echo "<th>Danh mục sản phẩm</th>";
-        echo "<th>Company adress</th>";
-        echo "<th>Action</th>";
+        echo "<th>Mã công ty</th>";
+        echo "<th>Tên công ty</th>";
+        echo "<th>Địa chỉ</th>";
+        echo "<th>Email</th>";
         echo "</thead>";
         while($r=$tbl->fetch_assoc()){
             echo "<tr>";
             echo "<td>";
-            echo $r["MaLSP"];
+            echo $r["company_id"];
             echo "</td>";
 
             echo "<td>";
-            echo $r["LoaiSP"];
+            echo $r["name"];
             echo "</td>";
 
             echo "<td>";
-            echo "499 Quang Trung Phường 10 Gò Vấp Hồ Chí Minh";
+            echo $r["address"];
+            echo "</td>";
+            echo "<td>";
+            echo $r["email"];
             echo "</td>";
             echo "<td> Sửa|Xóa </td>";
             echo "</tr>";

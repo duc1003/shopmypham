@@ -1,7 +1,7 @@
 <?php
-    include("controller/cSanPham.php");
-    $p = new CSanPham();
-    $tbl = $p->getAllSP();
+    include("controller/cProduct.php");
+    $p = new CProduct();
+    $tbl = $p->getAllProduct();
     $trang = 5;// số trang
     $tong = $tbl->num_rows;// tổng số sp
     $tongtrang = ceil($tong / $trang);//tính tổng số trang
@@ -30,10 +30,10 @@
     for ($i = 0; $i < $trang; $i++) {
         if ($row = $tbl->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row["MaSP"] . "</td>";
-            echo "<td>" . $row["TenSP"] . "</td>";
-            echo "<td><img src='img/" . $row["HinhAnh"] . "' width='70px' alt=''></td>";
-            echo "<td>" . $row["DonGia"] . "</td>";
+            echo "<td>" . $row["product_id"] . "</td>";
+            echo "<td>" . $row["name"] . "</td>";
+            echo "<td><img src='img/" . $row["image_url"] . "' width='70px' alt=''></td>";
+            echo "<td>" . $row["price"] . "</td>";
             echo "<td> Sửa|Xóa </td>";
             echo "</tr>";
         }

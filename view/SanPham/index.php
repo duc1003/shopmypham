@@ -1,13 +1,13 @@
 <?php
-    include("controller/cSanPham.php");
-    $p = new CSanPham();
-    if(isset($_GET["Comp"])){
-        $tbl = $p->getAllSPbyCompany($_GET["Comp"]);
+    include("controller/cProduct.php");
+    $p = new CProduct();
+    if(isset($_GET["type"])){
+        $tbl = $p->getAllProductByType($_GET["type"]);
     }elseif(isset($_POST["btnsearch"])){
-        $tbl = $p->getAllSPbyName($_POST["txtsearch"]);
+        $tbl = $p->getAllProductByName($_POST["txtsearch"]);
     }
     else{
-        $tbl = $p ->getAllSP();
+        $tbl = $p ->getAllProduct();
     }
     if(!$tbl){
         echo "Không có sản phẩm";
@@ -19,9 +19,9 @@
         echo "<tr>";
         while($r=$tbl->fetch_assoc()){
             echo "<td>";
-            echo "<img src='img/".$r["HinhAnh"]."' width = '100px' alt =''>"."<br>";
-            echo $r["TenSP"]."<br>";
-            echo $r["DonGia"];
+            echo "<img src='img/".$r["image_url"]."' width = '100px' alt =''>"."<br>";
+            echo $r["name"]."<br>";
+            echo $r["price"];
             echo "</td>";
             $dem++;
             if($dem%5==0){

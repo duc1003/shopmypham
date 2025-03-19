@@ -1,7 +1,7 @@
 <?php
-    include("controller/cCongTy.php");
-    $p = new CCongTy();
-    $tbl = $p ->getAllCT();
+    include("controller/cType.php");
+    $p = new CType();
+    $tbl = $p ->getAllType();
 
     if(!$tbl){
         echo "Không thể kết nối";
@@ -10,7 +10,7 @@
     } else {
         echo "<select name='txtdm'>";
         while($r = $tbl->fetch_assoc()){
-            echo "<option value='" . $r["LoaiSP"] . "'>" . $r["LoaiSP"] . "</option>";
+            echo "<option value='" . $r["type_id"] . "'>" . $r["name"] . "</option>";
         }
         echo "</select>";
     }
