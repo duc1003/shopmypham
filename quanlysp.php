@@ -43,7 +43,10 @@
         <a href="addsp.php">Thêm sản phẩm</a>
         <br>
             <?php 
-                include_once("view/QuanLy/quanlysp.php");
+                if(isset($_GET['edit'])){
+                    include_once("edit.php");
+                } else
+                    include_once("view/QuanLy/quanlysp.php");
             ?>
         </div>
     </div>

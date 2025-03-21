@@ -1,43 +1,50 @@
 <?php
-    include("controller/cType.php");
-    $p = new CType();
-    $tbl = $p ->getAllType();
+include_once("controller/cType.php");
+include_once("controller/cProduct.php");
+$p = new CType();
+$p2 = new CProduct();
+$tbl = $p->getAllType();
 
-    if(!$tbl){
-        echo "Không thể kết nối";
-    } elseif($tbl->num_rows == 0) {
-        echo "Chưa có dữ liệu";
+if (!$tbl) {
+    echo "Không thể kết nối";
+} elseif ($tbl->num_rows == 0) {
+    echo "Chưa có dữ liệu";
+} else {
+    echo "<select name='txtdm' required>";
+    while ($r = $tbl->fetch_assoc()) {
+        echo "<option value='" . $r["type_id"] . "'>" . $r["name"] . "</option>";
+    }
+    echo "</select>";
+}
+
+if (isset($_POST["btnthem"])) {
+    $TenSP = $_POST["txtten"];
+    $DonGia = $_POST["txtgia"];
+    $SoLuong = $_POST["txtsl"];
+    $MaLSP = $_POST["txtdm"];
+    $MoTa = $_POST["txtmota"];
+    
+    // Xử lý ảnh
+    $HinhAnh = $_FILES["file"]["name"];
+    $file_tmp = $_FILES["file"]["tmp_name"];
+    $file_type = strtolower(pathinfo($HinhAnh, PATHINFO_EXTENSION));
+    $allowed_types = array("jpg", "jpeg", "png");
+    
+    if (!in_array($file_type, $allowed_types)) {
+        echo "<script>alert('Chỉ nhận file JPG, JPEG, PNG.');</script>";
     } else {
-        echo "<select name='txtdm'>";
-        while($r = $tbl->fetch_assoc()){
-            echo "<option value='" . $r["type_id"] . "'>" . $r["name"] . "</option>";
-        }
-        echo "</select>";
-    }
-
-    
-    if(isset($_POST["btnthem"])) {
-        $TenSP = $_POST["txtten"];
-        $DonGia = $_POST["txtgia"];
-        $SoLuong = $_POST["txtsl"];
-        $MaLSP = $_POST["txtdm"];
-        $HinhAnh = $_FILES["file"]["name"];
-        $file_tmp = $_FILES["file"]["tmp_name"];
-        $MoTa = $_POST["txtmota"];
-
-        // Kiểm tra định dạng của tệp ảnh
-        $file_type = str_replace('.', '', pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
-        //pathinfo: lấy thông tin về phần mở rộng của tên tệp được tải lên
-        
-        //các định dạng cho phép
-        $artype = array("jpg", "jpeg", "png");
-    
-        // Kiểm tra định dạng
-        if (!in_array($file_type, $artype)) {
-            echo "Chỉ nhận file JPG, JPEG, PNG.";
-        } else {
-            echo '<script>alert("Thêm sản phẩm thành công");</script>';
+        $upload_dir = "img/";
+        $file_path = $upload_dir . basename($HinhAnh);
+        if (move_uploaded_file($file_tmp, $file_path)) {
+            $kq = $p2->addProduct($TenSP, $DonGia, $SoLuong, $MaLSP, $HinhAnh, $MoTa);
+            if ($kq) {
+                echo "<script>alert('Thêm sản phẩm thành công');</script>";
+            } else {
+                echo "<script>alert('Lỗi khi thêm sản phẩm');</script>";
             }
+        } else {
+            echo "<script>alert('Lỗi khi upload file');</script>";
+        }
     }
-
+}
 ?>
