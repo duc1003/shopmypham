@@ -44,7 +44,11 @@
             <br>
             <br>
             <?php 
-                include_once("view/QuanLy/quanlyCty.php");
+
+                if(isset($_GET['editComp'])){
+                    include_once("editCty.php");
+                } else
+                    include_once("view/QuanLy/quanlyCty.php");
             ?>
         </div>
     </div>

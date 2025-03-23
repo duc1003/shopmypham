@@ -45,7 +45,7 @@
             <?php 
                 if(isset($_GET['edit'])){
                     include_once("edit.php");
-                } else
+                } else 
                     include_once("view/QuanLy/quanlysp.php");
             ?>
         </div>

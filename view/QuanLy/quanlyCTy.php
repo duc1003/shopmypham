@@ -3,6 +3,24 @@
     $p = new CCompany();
     $tbl = $p ->getAllCompany();
 
+    echo "<script>
+        function confirmDelete(id) {
+            if (confirm('Bạn có chắc muốn xóa sản phẩm này không?')) {
+                window.location.href = 'quanlyCty.php?delComp=' + id;
+            }
+        }
+    </script>";
+
+    // Xử lý xóa sản phẩm
+    if (isset($_GET['delComp'])) {
+        $company_id = $_GET['delComp'];
+        if ($p->deleteCompany($company_id)) {
+            echo "<script>alert('Xóa sản phẩm thành công!'); window.location.href='quanlyCty.php';</script>";
+        } else {
+            echo "<script>alert('Lỗi khi xóa công ty!');</script>";
+        }
+    }
+
     if(!$tbl){
         echo "Không thể kết nối";
     }elseif($tbl == null){
@@ -31,9 +49,11 @@
             echo "</td>";
             echo "<td>";
             echo $r["email"];
-            echo "</td>";
-            echo "<td> Sửa|Xóa </td>";
-            echo "</tr>";
+            echo "<td>
+                <a href='quanlycty.php?editComp=" . $r['company_id'] . "'>Sửa</a> |
+                <a href='#' onclick='confirmDelete(" . $r['company_id'] . ")'>Xóa</a>
+              </td>";
+        echo "</tr>";
             $dem++;
             if($dem%5==0){
                 echo "</tr>";
