@@ -39,6 +39,17 @@ class CProduct{
             return false;
         }
     }
+   public function getProductByID($id){
+    $p = new MProduct();
+    $table = $p->getProductByID($id);
+    
+    if ($table && $table->num_rows > 0) {
+        return $table;
+    } else {
+        return false;
+    }
+}
+
 }
 
 

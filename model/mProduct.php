@@ -39,6 +39,21 @@ class MProduct{
             return $table;
         }
     }
+    public function getProductByID($id){
+    $p = new Connect();
+    $conn = $p->connect();
+    $conn->set_charset('utf8');
+
+    if (!$conn) return false;
+    else {
+        $query = "SELECT * FROM products WHERE product_id = '$id'";
+        $result = $conn->query($query);
+        $p->closeConnect($conn);
+        return $result;
+    }
+}
+
+
 }
 
 

@@ -12,11 +12,13 @@ session_start();
 </head>
 <body>
 <header>
-    <a href="index.php"><img src="img/logo-test.png" alt=""></a>
+    <a href="index.php"><img src="img/logo-my-pham-11.jpg" alt=""></a>
 </header>
 <nav>
-        <a href="index.php">Trang chủ |</a>
-        <a href="quanlycty.php">| Quản lý</a>
+<div class="box">
+    <a href="index.php">Trang chủ |</a>
+    <a href="quanlycty.php">| Quản lý</a>
+    </div>
         <form action="index.php" method="post">
         <div class="search">
             <input type="text"  name="txtsearch" placeholder="Tìm kiếm..." style="background-color: white;">
@@ -94,7 +96,7 @@ session_start();
         </div>
     </div>
 
-<footer style="background-color: pink ">
+<footer style="background-color: #f8fff5 ">
     <b></b>
 </footer>
 </body>

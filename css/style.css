@@ -21,8 +21,11 @@ header {
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    background-image: url('..//img/background.png');
+    background: #f8fff5;
+    
+
 }
+
 header img{
     width: 170px;
     height: 120px;
@@ -45,6 +48,9 @@ header img{
 }
 .container-body {
     display: flex;
+    background: #f8fff5;
+
+
 }
 .sec{
     float: right;
@@ -65,7 +71,7 @@ header img{
 }
 footer{
     height: 30px;
-    border: solid;
+    border: 1px solid;
     border-top: none;
     clear: both;
     text-align: center;
@@ -75,17 +81,19 @@ footer{
     width: 15px;
 }
 .search{
-    margin-left: 760px;
     padding: 5px;
+
+
 }
 nav{
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
     display: flex;
+    justify-content: space-between;
     height: 30px;
     align-items: center;
-    font-size: 17px;
+    font-size: 20px;
 }
 .tb tr td{
     /* border: solid; */
@@ -112,4 +120,18 @@ width: 200px;
 }
 .nav-header {
     padding: 20px 0 20px 0;
+    background: #f8fff5;
+}
+
+.box-header{
+    display: flex;
+
+}
+.box-header>h1{
+    font-family: 'Noto Sans', sans-serif; /* Đặt font cho h1 */
+    color: black;
+    line-height: 150px;
+    margin-left: 400px;
+    
+   
 }
