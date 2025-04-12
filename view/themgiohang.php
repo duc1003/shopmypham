@@ -2,7 +2,7 @@
 session_start();
 
 // Lấy dữ liệu từ form
-if (isset($_POST['product_id']) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity'] && isset($_POST['image_url']))) {
+if (isset($_POST['product_id']) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['quantity']) && isset($_POST['image_url'])) {
     $id = $_POST['product_id'];
     $name = $_POST['name'];
     $price = $_POST['price'];

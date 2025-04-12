@@ -1,7 +1,7 @@
 <?php
-    include("controller/cCompany.php");
-    $p = new CCompany();
-    $tbl = $p ->getAllCompany();
+    include("controller/cCategories.php");
+    $p = new CCategories();
+    $tbl = $p ->getAllCategories();
 
     if(!$tbl){
         echo "Không thể kết nối";
@@ -11,26 +11,22 @@
         $dem = 0;
         echo "<table class='tb' >";
         echo "<thead>";
-        echo "<th>Mã công ty</th>";
-        echo "<th>Tên công ty</th>";
-        echo "<th>Địa chỉ</th>";
-        echo "<th>Email</th>";
+        echo "<th>Mã danh mục</th>";
+        echo "<th>Tên danh mục</th>";
+        echo "<th>Mô tả</th>";
         echo "</thead>";
         while($r=$tbl->fetch_assoc()){
             echo "<tr>";
             echo "<td>";
-            echo $r["company_id"];
+            echo $r["category_id"];
             echo "</td>";
 
             echo "<td>";
-            echo $r["name"];
+            echo $r["category_name"];
             echo "</td>";
 
             echo "<td>";
-            echo $r["address"];
-            echo "</td>";
-            echo "<td>";
-            echo $r["email"];
+            echo $r["description"];
             echo "</td>";
             echo "<td> Sửa|Xóa </td>";
             echo "</tr>";

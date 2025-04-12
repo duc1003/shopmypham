@@ -1,12 +1,23 @@
 <?php
-if(isset($_POST['nut'])){
-	include_once(__DIR__ . "/../controller/cNguoiDung.php");
+if(isset($_POST['register'])){
+  require_once("../controller/cUser.php");
 
-	$p = new ControlNguoiDung();
+	$p = new CUser();
 	$username = $_POST['txtID'];
 	$password = $_POST['txtPWD'];
   $confirmpass = $_POST['cpassword'];
-	$p->cRegis($username, $password,   $confirmpass);
+
+  if($username == "" || $password == "" || $confirmpass == ""){
+    echo "<script>alert('Vui lòng nhập đầy đủ thông tin!');</script>";
+  }else if($password != $confirmpass){
+    echo "<script>alert('Mật khẩu không khớp!');</script>";
+  }
+  if($p->register($username, $password)){
+    echo "<script>alert('Đăng ký thành công!');</script>";
+    header("refresh:0;url=dangnhap.php");
+  }else{
+    echo "<script>alert('Đăng ký thất bại!');</script>";
+  }
 }
 ?>
 
@@ -40,7 +51,7 @@ if(isset($_POST['nut'])){
         <td style="text-align: center"><input name="cpassword" type="password" id="cpassword" size="40"></td>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: center"><input type="submit" name="nut" id="nut" value="Đăng ký"></td>
+        <td colspan="2" style="text-align: center"><input type="submit" name="register" id="nut" value="Đăng ký"></td>
       </tr>
     </tbody>
   </table>

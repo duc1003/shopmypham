@@ -1,31 +1,21 @@
 <?php
-// Kiểm tra session đã khởi động chưa
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+require_once("../controller/cUser.php");
 
-// Bao gồm file Controller nếu chưa được nạp
-$controller_path = __DIR__ . "/../Controller/cNguoiDung.php";
-if (file_exists($controller_path)) {
-    require_once($controller_path); // dùng require_once để tránh khai báo class trùng
-} else {
-    die("Lỗi: Không tìm thấy Controller/cNguoiDung.php");
-}
-
-$message = ""; 
 
 if (isset($_POST["submit"])) { 
-    $p = new ControlNguoiDung(); 
+    $p = new CUser(); 
     $id = $_POST["txtID"];
     $pwd = $_POST["txtPWD"];
     
-    $result = $p->cLogin($id, $pwd); 
-
-    if ($result === "Đăng nhập thành công") {
-        header("Location: index.php?message=loginsuccess&page=trangchu");
+    $result = $p->login($id, $pwd); 
+    if($result) { 
+        $_SESSION["user"] = $result; // Lưu thông tin người dùng vào session
+        header("Location: ../index.php");
         exit();
-    } else {
-        $message = "<p style='color: red;'>$result</p>";
+        
+    } else { 
+        echo "<script>alert('Đăng nhập thất bại!');</script>"; 
     }
 }
 ?>
@@ -65,7 +55,6 @@ if (isset($_POST["submit"])) {
       </tr>
     </tbody>
   </table>
-  <p style="text-align: center;"><?php echo $message;  ?></p>
   <p style="text-align: center;"><a href="dangky.php">Chưa có tài khoản? Đăng ký ngay!</a></p>
 </form>
 </body>

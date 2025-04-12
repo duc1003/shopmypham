@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../model/mGiohang.php");
+include_once("model/mGiohang.php");
 
 class CGioHang {
     private $model;

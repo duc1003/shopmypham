@@ -1,7 +1,7 @@
 <?php
 include_once("connect.php");
-class MType {
-    public function getAllType(){
+class MCategories {
+    public function getAllCategories(){
         $p = new Connect();
         $conn = $p->connect();
         $conn->set_charset('utf8');

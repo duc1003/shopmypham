@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,12 +20,24 @@
 </header>
 <nav  class="nav-header" >
     <div class="box">
-    <a href="index.php">Trang chủ |</a>
-        <a href="view/gioithieu.php">Giới thiệu|</a>
-        <a href="view/giohang.php">Giỏ hàng|</a>
-        <a href="view/dangky.php">Đăng ký |</a>
-        <a href="view/dangnhap.php">Đăng nhập |</a>
-        <a href="quanlycty.php"> Quản lý</a>
+        <?php 
+            if(isset($_SESSION['user'])) {
+                $user = $_SESSION['user'];
+                if($user["role"] == 'admin') {
+                    header("Location: quanlycty.php");
+                } else {
+                    echo "<a href='index.php'>Trang chủ |</a>";
+                    echo "<a href='view/gioithieu.php'>Giới thiệu |</a>";
+                    echo "<a href='giohang.php'>Giỏ hàng |</a>";
+                    echo "<a href='view/dangxuat.php'>Đăng xuất</a>";
+                }
+            } else {
+                echo "<a href='index.php'>Trang chủ |</a>";
+                echo "<a href='view/gioithieu.php'>Giới thiệu |</a>";
+                echo "<a href='view/dangky.php'>Đăng ký |</a>";
+                echo "<a href='view/dangnhap.php'>Đăng nhập |</a>";
+            }
+        ?>
     </div>
 
         <form action="index.php" method="post">
@@ -53,7 +65,7 @@
                     echo "Chưa có dữ liệu";
                 }else{
                     while ($row=$tableComp->fetch_assoc()){
-                        echo "<a href='index.php?type=".$row["type_id"]."'>".$row["name"]."</a><br><br>";
+                        echo "<a href='index.php?type=".$row["category_id"]."'>".$row["category_name"]."</a><br><br>";
                     }
                 }
             ?>
@@ -68,7 +80,7 @@
                             include("view/gioithieu.php");
                             break;
                         case "giohang":
-                            include("view/giohang.php");
+                            include("giohang.php");
                             break;
                         case "dangky":
                             include("view/dangky.php");
@@ -81,7 +93,7 @@
                             break;
                     }
                 } else {
-                    include("view/SanPham/index.php");
+                    require_once("view/SanPham/index.php");
                 }
             ?>
         </div>

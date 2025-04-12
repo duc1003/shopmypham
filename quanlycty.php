@@ -15,8 +15,7 @@
 </header>
 <nav>
     <div class="box">
-    <a href="index.php">Trang chủ |</a>
-    <a href="quanlycty.php">| Quản lý</a>
+    <a href="view/dangxuat.php">Đăng xuất </a>
     </div>
       
         <form action="index.php" method="post">

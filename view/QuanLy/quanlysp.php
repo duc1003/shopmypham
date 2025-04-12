@@ -31,10 +31,13 @@
         if ($row = $tbl->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row["product_id"] . "</td>";
-            echo "<td>" . $row["name"] . "</td>";
+            echo "<td>" . $row["product_name"] . "</td>";
             echo "<td><img src='img/" . $row["image_url"] . "' width='70px' alt=''></td>";
             echo "<td>" . $row["price"] . "</td>";
-            echo "<td> Sửa|Xóa </td>";
+            echo "<td>
+                <a href='edit_product.php?id=" . $row["product_id"] . "'>Sửa</a> |
+                <a href='delete_product.php?id=" . $row["product_id"] . "' onclick='return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');'>Xóa</a>
+            </td>";
             echo "</tr>";
         }
     }
