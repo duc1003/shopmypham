@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
-    <a href="index.php"><img src="img/logo-test.png" alt=""></a>
+<header> 
+    <div class="box-header">
+    <a href="index.php"><img src="img/logo-my-pham-11.jpg" alt="" style=" width: 200px, height: 100px"></a>
+    <h1 style="color: #044115"> Shop Mỹ Phẩm </h1>
+    </div>
+
+
 </header>
 <nav>
         <a href="view/dangxuat.php">Đăng xuất</a>
@@ -52,6 +57,6 @@
             ?>
         </div>
     </div>
-<footer style="background-color: pink "><b></b></footer>
+    <footer style="background-color: #f8fff5"></footer>
 </body>
 </html>

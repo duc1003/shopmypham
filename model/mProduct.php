@@ -20,7 +20,7 @@ class MProduct{
         $conn->set_charset('utf8');
         if(!$conn) return false;
         else {
-            $query = "select * from products where type_id = '$type'";
+            $query = "select * from products where category_id = '$type'";
             $table = $conn->query($query);
             $p->closeConnect($conn);
             return $table;
