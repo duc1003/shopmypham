@@ -1,5 +1,7 @@
 <?php
-require_once("model/mCartItem.php");
+
+
+require_once(__DIR__ . "/../model/mCartItem.php");
 
 class CCartItem {
     public function addCartItem($user_id, $product_id, $quantity) {

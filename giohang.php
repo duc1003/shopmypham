@@ -64,7 +64,10 @@ if (isset($_GET["remove"])) {
 </div>
 <?php endif; ?>
     
-<a class="back-link" href="view/SanPham/index.php">← Tiếp tục mua sắm</a>
+<a class="back-link" href="index.php">← Tiếp tục mua sắm</a>
+<!-- <a href="index.php" style="text-decoration: none;">
+    <button>Tiếp tục mua sắm</button>
+</a> -->
 
 </body>
 </html>

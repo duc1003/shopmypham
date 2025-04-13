@@ -1,6 +1,11 @@
 <?php
-require_once("controller/cCartItem.php");
-require_once("controller/cProduct.php");
+
+
+require_once(__DIR__ . "/../../controller/cCartItem.php");
+require_once(__DIR__ . "/../../controller/cProduct.php");
+
+
+
 $p1 = new CCartItem();
 $p = new CProduct();
 if (isset($_SESSION['user'])) {

@@ -1,5 +1,6 @@
 <?php
-include_once("model/mProduct.php");
+include_once(__DIR__ . "/../model/mProduct.php");
+
 class CProduct{
     public function getAllProduct(){
         $p = new MProduct();
