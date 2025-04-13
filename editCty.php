@@ -1,11 +1,11 @@
 <?php
-include("controller/cCompany.php");
-$p = new CCompany();
+include("controller/cCategories.php");
+$p = new CCategories();
 
 // Kiểm tra nếu có ID sản phẩm cần chỉnh sửa
 if (isset($_GET['editComp'])) {
     $company_id = $_GET['editComp'];
-    $company = $p->getCompanyById($company_id);
+    $company = $p->getCategoryById($company_id);
     if (!$company) {
         echo "<script>alert('Sản phẩm không tồn tại!'); window.location.href='quanlyCty.php';</script>";
         exit;
@@ -15,10 +15,9 @@ if (isset($_GET['editComp'])) {
 // Xử lý cập nhật sản phẩm
 if (isset($_POST['btnupdate'])) {
     $TenCty = $_POST['compName'];
-    $address = $_POST['address'];
-    $email = $_POST['email'];
+    $MoTa = $_POST['txtmota'];
     // Cập nhật sản phẩm
-    if ($p->updateCompany($company_id, $TenCty, $address, $email)) {
+    if ($p->updateCategory($company_id, $TenCty, $MoTa)) {
         echo "<script>alert('Cập nhật thành công!'); window.location.href='quanlycty.php';</script>";
     } else {
         echo "<script>alert('Lỗi khi cập nhật công ty!');</script>";
@@ -34,20 +33,15 @@ if (isset($_POST['btnupdate'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h2>Chỉnh sửa công ty</h2>
 <form action="" method="POST" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>Tên công ty</td>
-            <td><input type="text" name="compName" value="<?php echo $company['name']; ?>" required></td>
+            <td>Tên danh mục</td>
+            <td><input type="text" name="compName" value="<?php echo $company['category_name']; ?>" required></td>
         </tr>
         <tr>
-            <td>address</td>
-            <td><input type="text" name="address" value="<?php echo $company['address']; ?>" required></td>
-        </tr>
-        <tr>
-            <td>email</td>
-            <td><input type="email" name="email" required value="<?php echo $company['email']; ?>"></td>
+            <td>Mô tả</td>
+            <td><textarea name="description" required><?php echo $company['description']; ?></textarea></td>
         </tr>
         <tr>
             <td>

@@ -33,7 +33,7 @@ class MProduct{
         $conn->set_charset('utf8');
         if(!$conn) return false;
         else {
-            $query = "select * from products where name like '%$name%'";
+            $query = "select * from products where product_name like '%$name%'";
             $table = $conn->query($query);
             $p->closeConnect($conn);
             return $table;
@@ -58,7 +58,7 @@ class MProduct{
         $conn->set_charset('utf8');
         if(!$conn) return false;
         else {
-            $query = "insert into products(name, price, quantity, type_id, image_url, description) values('$TenSP', '$DonGia', '$SoLuong', '$MaLSP', '$HinhAnh', '$MoTa')";
+            $query = "insert into products(product_name, price, stock, category_id, image_url, description) values('$TenSP', '$DonGia', '$SoLuong', '$MaLSP', '$HinhAnh', '$MoTa')";
             $kq = $conn->query($query);
             $p->closeConnect($conn);
             return $kq;
@@ -82,7 +82,7 @@ class MProduct{
         $conn->set_charset('utf8');
         if(!$conn) return false;
         else {
-            $query = "update products set name = '$TenSP', price = '$DonGia', quantity = '$SoLuong', description = '$MoTa', type_id = '$MaLSP', image_url = '$HinhAnh' where product_id = '$product_id'";
+            $query = "update products set product_name = '$TenSP', price = '$DonGia', stock = '$SoLuong', description = '$MoTa', category_id = '$MaLSP', image_url = '$HinhAnh' where product_id = '$product_id'";
             $kq = $conn->query($query);
             $p->closeConnect($conn);
             return $kq;

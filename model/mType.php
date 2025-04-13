@@ -7,7 +7,7 @@ class MType {
         $conn->set_charset('utf8');
         if(!$conn) return false;
         else {
-            $query = "select * from product_types";
+            $query = "select * from categories";
             $table = $conn->query($query);
             $p->closeConnect($conn);
             return $table;

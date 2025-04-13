@@ -20,7 +20,7 @@
         while($r=$tbl->fetch_assoc()){
             echo "<td>";
             echo "<img src='img/".$r["image_url"]."' width = '100px' alt =''>"."<br>";
-            echo $r["name"]."<br>";
+            echo $r["product_name"]."<br>";
             echo $r["price"];
             echo "</td>";
             $dem++;

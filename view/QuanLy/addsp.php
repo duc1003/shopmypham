@@ -1,9 +1,9 @@
 <?php
-include_once("controller/cType.php");
+include_once("controller/cCategories.php");
 include_once("controller/cProduct.php");
-$p = new CType();
+$p = new CCategories();
 $p2 = new CProduct();
-$tbl = $p->getAllType();
+$tbl = $p->getAllCategories();
 
 if (!$tbl) {
     echo "Không thể kết nối";
@@ -12,7 +12,7 @@ if (!$tbl) {
 } else {
     echo "<select name='txtdm' required>";
     while ($r = $tbl->fetch_assoc()) {
-        echo "<option value='" . $r["type_id"] . "'>" . $r["name"] . "</option>";
+        echo "<option value='" . $r["category_id"] . "'>" . $r["category_name"] . "</option>";
     }
     echo "</select>";
 }

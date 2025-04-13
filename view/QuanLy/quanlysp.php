@@ -52,7 +52,7 @@ for ($i = 0; $i < $trang; $i++) {
     if ($row = $tbl->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["product_id"] . "</td>";
-        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["product_name"] . "</td>";
         echo "<td><img src='img/" . $row["image_url"] . "' width='70px' alt=''></td>";
         echo "<td>" . $row["price"] . "</td>";
         echo "<td>

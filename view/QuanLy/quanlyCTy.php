@@ -1,66 +1,72 @@
 <?php
-    include("controller/cCompany.php");
-    $p = new CCompany();
-    $tbl = $p ->getAllCompany();
+include("controller/cCategories.php");
+$p = new CCategories();
 
-    echo "<script>
-        function confirmDelete(id) {
-            if (confirm('Bạn có chắc muốn xóa sản phẩm này không?')) {
-                window.location.href = 'quanlyCty.php?delComp=' + id;
-            }
-        }
-    </script>";
+$tbl = $p->getAllCategories();
 
-    // Xử lý xóa sản phẩm
-    if (isset($_GET['delComp'])) {
-        $company_id = $_GET['delComp'];
-        if ($p->deleteCompany($company_id)) {
-            echo "<script>alert('Xóa sản phẩm thành công!'); window.location.href='quanlyCty.php';</script>";
-        } else {
-            echo "<script>alert('Lỗi khi xóa công ty!');</script>";
+$trang = 5; // số danh mục mỗi trang
+$tong = $tbl->num_rows; // tổng số danh mục
+$tongtrang = ceil($tong / $trang);
+
+$tranghientai = isset($_GET['page']) ? $_GET['page'] : 1;
+if ($tranghientai > $tongtrang || $tranghientai < 1) {
+    $tranghientai = 1;
+}
+
+$offset = ($tranghientai - 1) * $trang;
+
+echo "<script>
+    function confirmDelete(id) {
+        if (confirm('Bạn có chắc muốn xóa danh mục này không?')) {
+            window.location.href = 'quanlycty.php?delComp=' + id;
         }
     }
+</script>";
 
-    if(!$tbl){
-        echo "Không thể kết nối";
-    }elseif($tbl == null){
-        echo "Chưa có dữ liệu";
-    }else{
-        $dem = 0;
-        echo "<table class='tb' >";
-        echo "<thead>";
-        echo "<th>Mã công ty</th>";
-        echo "<th>Tên công ty</th>";
-        echo "<th>Địa chỉ</th>";
-        echo "<th>Email</th>";
-        echo "</thead>";
-        while($r=$tbl->fetch_assoc()){
-            echo "<tr>";
-            echo "<td>";
-            echo $r["company_id"];
-            echo "</td>";
+// Xử lý xóa
+if (isset($_GET['delComp'])) {
+    $id = $_GET['delComp'];
+    if ($p->deleteCategory($id)) {
+        echo "<script>alert('Xóa thành công'); window.location.href='quanlycty.php';</script>";
+    } else {
+        echo "<script>alert('Xóa thất bại');</script>";
+    }
+}
 
-            echo "<td>";
-            echo $r["name"];
-            echo "</td>";
+echo "<table class='tb'>";
+echo "<thead>";
+echo "<th>ID</th>";
+echo "<th>Tên danh mục</th>";
+echo "<th>Mô tả</th>";
+echo "<th>Hành động</th>";
+echo "</thead>";
 
-            echo "<td>";
-            echo $r["address"];
-            echo "</td>";
-            echo "<td>";
-            echo $r["email"];
-            echo "<td>
-                <a href='quanlycty.php?editComp=" . $r['company_id'] . "'>Sửa</a> |
-                <a href='#' onclick='confirmDelete(" . $r['company_id'] . ")'>Xóa</a>
+$tbl->data_seek($offset); // nhảy tới dòng bắt đầu
+
+for ($i = 0; $i < $trang; $i++) {
+    if ($row = $tbl->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["category_id"] . "</td>";
+        echo "<td>" . $row["category_name"] . "</td>";
+        echo "<td>" . $row["description"] . "</td>";
+        echo "<td>
+                <a href='quanlycty.php?editComp=" . $row['category_id'] . "'>Sửa</a> |
+                <a href='#' onclick='confirmDelete(" . $row['category_id'] . ")'>Xóa</a>
               </td>";
         echo "</tr>";
-            $dem++;
-            if($dem%5==0){
-                echo "</tr>";
-                echo "<tr>";
-            }
-        }
-        echo "</tr>";
-        echo "</table>";
     }
+}
+
+echo "</table>";
+
+// Hiển thị phân trang
+echo "<div style='margin-top: 15px'>";
+for ($i = 1; $i <= $tongtrang; $i++) {
+    if ($i == $tranghientai) {
+        echo "<strong>$i</strong> ";
+    } else {
+        echo "<a href='?page=$i'>| $i</a> ";
+    }
+}
+echo "</div>";
 ?>

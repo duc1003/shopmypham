@@ -49,7 +49,7 @@ if (isset($_POST['btnupdate'])) {
     <table>
         <tr>
             <td>Tên sản phẩm</td>
-            <td><input type="text" name="txtten" value="<?php echo $product['name']; ?>" required></td>
+            <td><input type="text" name="txtten" value="<?php echo $product['product_name']; ?>" required></td>
         </tr>
         <tr>
             <td>Giá sản phẩm</td>
@@ -57,7 +57,7 @@ if (isset($_POST['btnupdate'])) {
         </tr>
         <tr>
             <td>Số lượng</td>
-            <td><input type="number" name="txtsl" value="<?php echo $product['quantity']; ?>" required></td>
+            <td><input type="number" name="txtsl" value="<?php echo $product['stock']; ?>" required></td>
         </tr>
         <tr>
             <td>Mô tả</td>

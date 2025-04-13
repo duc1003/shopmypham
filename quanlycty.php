@@ -14,8 +14,7 @@
     <a href="index.php"><img src="img/logo-test.png" alt=""></a>
 </header>
 <nav>
-        <a href="index.php">Trang chủ |</a>
-        <a href="quanlycty.php">| Quản lý</a>
+        <a href="view/dangxuat.php">Đăng xuất</a>
         <form action="index.php" method="post">
         <div class="search">
             <input type="text"  name="txtsearch" placeholder="Tìm kiếm..." style="background-color: white;">
@@ -41,6 +40,7 @@
 
         <div class="sec ">
             <h2>Quản lý công ty</h2>
+            <a href="addcty.php">Thêm danh mục</a>
             <br>
             <br>
             <?php 
