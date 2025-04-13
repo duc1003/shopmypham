@@ -80,7 +80,7 @@
                             include("view/gioithieu.php");
                             break;
                         case "giohang":
-                            include("giohang.php");
+                            include("view/giohang.php");
                             break;
                         case "dangky":
                             include("view/dangky.php");

@@ -39,19 +39,19 @@ class MProduct{
             return $table;
         }
     }
-    
-    public function getProductById($id) {
-        $p = new Connect();
-        $conn = $p->connect();
-        $conn->set_charset('utf8');
-        if(!$conn) return false;
-        else {
-            $query = "select * from products where product_id = '$id'";
-            $table = $conn->query($query);
-            $p->closeConnect($conn);
-            return $table->fetch_assoc();
-        }
+    public function getProductByID($id){
+    $p = new Connect();
+    $conn = $p->connect();
+    $conn->set_charset('utf8');
+
+    if (!$conn) return false;
+    else {
+        $query = "SELECT * FROM products WHERE product_id = '$id'";
+        $result = $conn->query($query);
+        $p->closeConnect($conn);
+        return $result;
     }
+}
     public function addProduct($TenSP, $DonGia, $SoLuong, $MaLSP, $HinhAnh, $MoTa){
         $p = new Connect();
         $conn = $p->connect();

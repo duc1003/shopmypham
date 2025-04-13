@@ -31,7 +31,7 @@ if (isset($_POST['product_id']) && isset($_POST['name']) && isset($_POST['price'
     }
 
     // Chuyển hướng về giỏ hàng
-    header("Location: view/giohang.php");
+    header("Location:giohang.php");
     exit();
 } else {
     echo "Thiếu dữ liệu sản phẩm.";

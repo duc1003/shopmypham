@@ -39,15 +39,17 @@ class CProduct{
             return false;
         }
     }
-    public function getProductById($id){
-        $p = new MProduct();
-        $product = $p->getProductById($id);
-        if($product){
-            return $product;
-        }else{
-            return false;
-        }
+   public function getProductByID($id){
+    $p = new MProduct();
+    $table = $p->getProductByID($id);
+    
+    if ($table && $table->num_rows > 0) {
+        return $table;
+    } else {
+        return false;
     }
+}
+
     public function addProduct($TenSP, $DonGia, $SoLuong, $MaLSP, $HinhAnh, $MoTa){
         $p = new MProduct();
         $kq = $p->addProduct($TenSP, $DonGia, $SoLuong, $MaLSP, $HinhAnh, $MoTa);
