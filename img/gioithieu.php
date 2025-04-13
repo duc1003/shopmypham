@@ -47,7 +47,7 @@
             <h2>Bài Viết Nổi Bật</h2>
             <div class="post-list">
                 <div class="post">
-                    <img src="../img/5sp.jpg" alt="Skincare" />
+<img src="../img/5sp.jpg" alt="Skincare" />
                     <h3>Top 5 sản phẩm chăm sóc da không thể thiếu</h3>
                     <p>Làn da đẹp bắt đầu từ những thói quen đúng đắn. Cùng khám phá...</p>
                 </div>
@@ -70,3 +70,4 @@
         </footer>
     </div>
 </body>
+</html>
